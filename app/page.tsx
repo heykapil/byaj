@@ -35,19 +35,23 @@ export default function ButtonBarDemo() {
   }, [watchAll.currency])
 
     return (
-      <div>
-    {/* <h1 className='text-blue-700 font-bold text-lg text-center mb-10'>ब्याज</h1> */}
-    <form className='hideprint mb-10 mx-auto md:mx-0' onSubmit={handleSubmit(onSubmit)}>
-      <div className='flex flex-col space-y-4 mb-4'>
+      <>
+         <div className='container mx-auto justify-center flex items-center md:justify-normal md:items-normal md:mx-4'>
+           {/* for centering form */}
+           {/* <div className='container mx-auto flex items-center justify-center md:justify-normal mt-6'> */}
+
+        {/* <h1 className='text-blue-700 font-bold text-lg text-center mb-10'>ब्याज</h1> */}
+    <form className='hideprint mb-10 md:mx-0' onSubmit={handleSubmit(onSubmit)}>
+      <div className='flex flex-col space-y-6 mb-4'>
         <div className='flex flex-col space-y-2'>
             <Controller name="currency"         rules={{ required: true }}
  control={control} render={({ field }) => (
    <>
-   <InputNumber
+            <InputNumber
                   id='currency'
                   required
                   inputId='currency'
-                  className='w-fit border-gray-300 border-2'
+                  className='w-fit min-w-[258px] border-gray-300 font-medium border-2'
                   currency="INR"
                   placeholder='रुपये (₹)'
                   value={field.value}
@@ -92,7 +96,7 @@ export default function ButtonBarDemo() {
             <span className='text-normal font-medium'>समय अवधि: </span><span className='font-medium text-medium text-blue-700'>{duration.text || ''}</span>
           </p>
         </div>
-        <div className='card flex justify-content-center flex-col w-fit space-y-1'>
+        <div className='card flex justify-content-center flex-col w-fit min-w-[258px] space-y-1'>
             <Controller name="roi"         rules={{ required: true }}
                 control={control} render={({ field }) => (
               <>
@@ -100,16 +104,17 @@ export default function ButtonBarDemo() {
                   inputId='roi'
                   required
                   id='roi'
-                  className='w-fit border-gray-300 font-medium border-2'
+                  className='w-fit min-w-[258px] border-gray-300 font-medium border-2'
                   placeholder="ब्याज दर (% प्रति माह)"
                   suffix="% प्रति माह"
                   prefix={`ब्याज दर: `}
-                  // defaultValue={2}
                   min={0}
                   max={100}
                   value={field.value}
                   onChange={(e) => { setTable(false); field.onChange(e.value) }}
               />
+
+
               {errors.roi && <Message className='w-[258px]' severity="error" text="Interest Rate is required" />}
               </>
               )} />
@@ -119,13 +124,16 @@ export default function ButtonBarDemo() {
             )} />
         </div>
         <div className='flex pt-6 flex-row justify-between w-xs max-w-[258px] font-medium text-medium'>
-          <button disabled={!isValid || isSubmitting || !errors} className='bg-indigo-600 disabled:bg-red-600 text-white px-4 py-1 rounded-md w-fit' type='submit' onClick={() => { setValue('duration', duration as unknown as JSON);  if(isValid){setTable(true)} }}>Submit</button>
+          <button disabled={!isValid || isSubmitting || !errors} className='bg-indigo-600 disabled:bg-gray-600 text-white px-4 py-1 rounded-md w-fit' type='submit' onClick={() => { setValue('duration', duration as unknown as JSON);  if(isValid){setTable(true)} }}>Submit</button>
           <button className='text-indigo-600 bg-white px-4 py-1 border-2 border-gray-300 rounded-md w-fit' onClick={() => { setTable(false);  reset(); }}>Reset</button>
       </div>
       </div>
     </form>
+      </div>
+      <div>
     {/* @ts-ignore */}
     {table ? <InterestTable roi={formData?.roi} currency={formData.currency} fromdate={formData.fromdate} todate={formData.todate} duration={duration} /> : ''}
       </div>
+      </>
     )
 }

@@ -57,7 +57,7 @@ export function InterestTable({
   const header = (
          <div className='flex shadow-none drop-shadow-none'>
            <div className='m-0 space-y-4'>
-             <p className='text-md font-medium'>नाम: </p>
+             {/* <p className='text-md font-medium'>नाम: </p> */}
              <p className='text-md font-medium'>मूलधन: <span className='text-blue-700'>{INR.format(currency)} | {currency> 0 ? N2WHindi.convert(`${currency}`): ''} रुपये
            </span>
            </p>
@@ -76,9 +76,11 @@ export function InterestTable({
   const footer = (
     <div className='flex shadow-none drop-shadow-none'>
       <div className='m-0 space-y-4'>
-   <p className='text-md font-medium'>समय: <span className='text-blue-700'>{formateDate(fromdate, false)} </span> से <span className='text-blue-700'>{formateDate(value[length-1].to, false)} तक
-   </span></p>
-   <p className='text-md font-medium'>कुल ब्याज: <span className='text-blue-700'>{kulbyaj} | {' '}
+   {/* <p className='text-md font-medium'>समय: <span className='text-blue-700'>{formateDate(fromdate, false)} </span> से <span className='text-blue-700'>{formateDate(value[length-1].to, false)} तक
+   </span></p> */}
+        <p className='text-md font-medium'>कुल ब्याज
+          {/* ({formateDate(value[0]?.from , true)} से {formateDate(value[length - 1]?.to , true)} तक) */}
+          : <span className='text-blue-700'>{kulbyaj} | {' '}
      {currencytoWords(kulbyaj)} रुपये
    </span></p>
         <p className='text-md font-medium'>कुल (मूलधन + कुल ब्याज): <span className='text-large font-semibold border-b border-blue-700 text-blue-700'>{kulamount} | {' '}
@@ -101,10 +103,10 @@ return <div>
 }
  return (
      <DataTable showGridlines stripedRows size='large' value={value} header={header} footer={footer} tableStyle={{  maxWidth: '50rem' }}>
-        <Column style={{ width: '15%' }} header="कब से - कब तक" body={fromtoTempl}></Column>
+        <Column style={{ width: '15%' }} header="कब से - कब तक" frozen body={fromtoTempl}></Column>
         <Column style={{ width: '10%' }} header='अवधि ' field='duration'></Column>
         <Column style={{ width: '10%' }} header='ब्याज (वर्णित अवधि)' field='duration_interest'></Column>
-        <Column style={{ width: '10%' }} header='कुल(अवधि के अंत तक)' field='total_after_duration'></Column>
+        <Column style={{ width: '10%' }} header='कुल (अवधि के अंत तक)' field='total_after_duration'></Column>
     </DataTable>
  )
 }
