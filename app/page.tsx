@@ -75,19 +75,16 @@ export default function ButtonBarDemo() {
      {errors.fromdate && <Message className='w-[258px]' severity="error" text="From date is required" />}
                  </>
                  )}  />
-          <label htmlFor="कब से" className='font-medium text-medium text-blue-700'>{watchAll.fromdate ? <><p>{formateDate(watchAll.fromdate)}</p><p>तारीख़ से</p></> : ''}</label>
+          <label htmlFor="कब से" className='font-medium text-medium text-blue-700'>{watchAll.fromdate ? <p>{formateDate(watchAll.fromdate)} <span className='text-black'> तारीख़ से</span></p> : ''}</label>
         </div>
         <div className='card flex justify-content-center flex-col w-[258px] space-y-1'>
          <Controller name="todate"         rules={{ required: true }}
  control={control} render={({ field }) => (
-
-   <>
-                  <Calendar required id='todate' placeholder='कब तक(तारीख़)' value={field.value} inputId="कब तक" dateFormat='dd/mm/yy' locale='en' className='border-2 font-medium border-gray-300 border-rounded-md' onChange={(e) => { setTable(false); field.onChange(e.value) }} showButtonBar />
-                  {errors.todate && <Message className='w-[258px]' severity="error" text="To date is required" />}
-
-   </>
-                  )} />
-          <label htmlFor="कब तक" className='font-medium text-medium text-blue-700'>{watchAll.todate ? <><p>{formateDate(watchAll.todate)}</p><p>तारीख़ तक</p></> : ''}</label>
+        <>
+        <Calendar required id='todate' placeholder='कब तक(तारीख़)' value={field.value} inputId="कब तक" dateFormat='dd/mm/yy' locale='en' className='border-2 font-medium border-gray-300 border-rounded-md' onChange={(e) => { setTable(false); field.onChange(e.value) }} showButtonBar />
+          {errors.todate && <Message className='w-[258px]' severity="error" text="To date is required" />}</>
+          )} />
+          <label htmlFor="कब तक" className='font-medium text-medium text-blue-700'>{watchAll.todate ? <p>{formateDate(watchAll.todate)}<span className='text-black'> तारीख़ तक</span></p> : ''}</label>
         </div>
         </div>
         <div className='card flex justify-content-center flex-col w-fit min-w-[258px] space-y-1'>
@@ -130,7 +127,7 @@ export default function ButtonBarDemo() {
       </div>
     </form>
       </div>
-      <div>
+      <div className='container space-y-4'>
     {/* @ts-ignore */}
     {table ? <InterestTable roi={formData?.roi} currency={formData.currency} fromdate={formData.fromdate} todate={formData.todate} duration={duration} /> : ''}
       </div>

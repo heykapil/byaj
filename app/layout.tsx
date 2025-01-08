@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Lato } from 'next/font/google';
 import { PrimeReactProvider } from "primereact/api";
-import 'primereact/resources/themes/lara-light-blue/theme.css';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import "./globals.css";
 const font = Lato({ subsets: ["latin"], weight:'400' });
 

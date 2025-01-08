@@ -181,6 +181,25 @@ div.p-datepicker-title {
   display: flex;
 }
 
+div.p-datatable{
+  border-color: #e4e4e7;
+  border-width: 1px;
+}
+
+div.p-datatable-header, tr.row{
+  border-bottom: 1px solid #e4e4e7;
+}
+div.p-datatable-footer {
+  border-top: 1px solid #e4e4e7;
+}
+
+
+/* div.p-datatable, div.p-datatable-gridlines div.p-datatable-header {
+border-width: 1px 1px 0 1px !important;
+border: black 1px !important;
+} */
+
+
 @media print {
 	form.hideprint {
 		visibility: hidden;
