@@ -66,7 +66,7 @@ export function InterestTable({
            </p>
         <p className='text-md font-medium'>अवधि: <span className='text-md font-medium border-b border-blue-700 text-blue-700'>{duration.text}
         </span></p>
-        <p className='text-md font-medium'>ब्याज दर: <span className='text-md font-medium border-b border-blue-700 text-blue-700'>{roi} % प्रति माह
+        <p className='text-md font-medium'>ब्याज दर: <span className='text-md font-medium border-b border-blue-700 text-blue-700'>{roi}% प्रति माह
         </span></p>
            </div>
            </div>
@@ -100,7 +100,7 @@ return <div>
 </div>
 }
  return (
-     <DataTable showGridlines size='large' value={value} header={header} footer={footer} tableStyle={{  maxWidth: '50rem' }}>
+     <DataTable showGridlines stripedRows size='large' value={value} header={header} footer={footer} tableStyle={{  maxWidth: '50rem' }}>
         <Column style={{ width: '15%' }} header="कब से - कब तक" body={fromtoTempl}></Column>
         <Column style={{ width: '10%' }} header='अवधि ' field='duration'></Column>
         <Column style={{ width: '10%' }} header='ब्याज (वर्णित अवधि)' field='duration_interest'></Column>
