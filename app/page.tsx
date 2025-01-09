@@ -51,7 +51,7 @@ export default function ButtonBarDemo() {
                   id='currency'
                   required
                   inputId='currency'
-                  className='w-fit min-w-[258px] border-gray-300 font-medium border-2'
+                  className='w-fit min-w-[258px] rounded-md border-gray-300 font-medium border-2'
                   currency="INR"
                   placeholder='रुपये (₹)'
                   value={field.value}
@@ -71,7 +71,7 @@ export default function ButtonBarDemo() {
         <div className='card flex justify-content-center flex-col w-[258px]  space-y-1'>
         <Controller name="fromdate"         rules={{ required: true }}
  control={control} render={({ field }) => (
-                 <> <Calendar required id='fromdate' placeholder='कब से(तारीख़)' value={field.value} inputId="कब से" dateFormat='dd/mm/yy' locale='en' className='border-rounded-md font-medium border-2 border-gray-300' onChange={(e) => { setTable(false); field.onChange(e.value) }} showButtonBar />
+                 <> <Calendar required id='fromdate' placeholder='कब से(तारीख़)' value={field.value} inputId="कब से" dateFormat='dd/mm/yy' locale='en' className='rounded-md font-medium border-2 border-gray-300' onChange={(e) => { setTable(false); field.onChange(e.value) }} showButtonBar />
      {errors.fromdate && <Message className='w-[258px]' severity="error" text="From date is required" />}
                  </>
                  )}  />
@@ -81,36 +81,39 @@ export default function ButtonBarDemo() {
          <Controller name="todate"         rules={{ required: true }}
  control={control} render={({ field }) => (
         <>
-        <Calendar required id='todate' placeholder='कब तक(तारीख़)' value={field.value} inputId="कब तक" dateFormat='dd/mm/yy' locale='en' className='border-2 font-medium border-gray-300 border-rounded-md' onChange={(e) => { setTable(false); field.onChange(e.value) }} showButtonBar />
+        <Calendar required id='todate' placeholder='कब तक(तारीख़)' value={field.value} inputId="कब तक" dateFormat='dd/mm/yy' locale='en' className='border-2 rounded-md font-medium border-gray-300 border-rounded-md' onChange={(e) => { setTable(false); field.onChange(e.value) }} showButtonBar />
           {errors.todate && <Message className='w-[258px]' severity="error" text="To date is required" />}</>
           )} />
           <label htmlFor="कब तक" className='font-medium text-medium text-blue-700'>{watchAll.todate ? <p>{formateDate(watchAll.todate)}<span className='text-black'> तारीख़ तक</span></p> : ''}</label>
         </div>
         </div>
-        <div className='card flex justify-content-center flex-col w-fit min-w-[258px] space-y-1'>
-          <p className='border-2 border-gray-300 py-[5px] bg-white px-1'>
+        <div className='card flex justify-content-center flex-col w-fit min-w-[258px] h-10 space-y-1'>
+          <p className='border-2 border-gray-300 py-[5px] bg-white rounded-md px-1'>
             {/* @ts-ignore */}
             <span className='text-normal font-medium'>समय अवधि: </span><span className='font-medium text-medium text-blue-700'>{duration.text || ''}</span>
           </p>
         </div>
-        <div className='card flex justify-content-center flex-col w-fit min-w-[258px] space-y-1'>
+        <div className='card flex justify-content-center flex-col w-fit max-w-[258px] space-y-1'>
             <Controller name="roi"         rules={{ required: true }}
                 control={control} render={({ field }) => (
               <>
+                <div className="p-inputgroup flex-1">
+                   <span className="p-inputgroup-addon h-10 bg-gray-50 text-black border-gray-300 border-r-0 font-medium border-2">ब्याज दर: </span>
                   <InputNumber
                   inputId='roi'
                   required
                   id='roi'
-                  className='w-fit min-w-[258px] border-gray-300 font-medium border-2'
-                  placeholder="ब्याज दर (% प्रति माह)"
-                  suffix="% प्रति माह"
-                  prefix={`ब्याज दर: `}
+                  className='max-w-[120px] h-10 flex justify-items-center items-align-center border-2 border-x-0 border-gray-300 text-blue-700 font-medium'
+                  placeholder=""
+                  // suffix=""
+                  // prefix={`ब्याज दर: `}
                   min={0}
                   max={100}
                   value={field.value}
                   onChange={(e) => { setTable(false); field.onChange(e.value) }}
               />
-
+              <span className="p-inputgroup-addon h-10 bg-gray-50 text-black border-gray-300 border-l-0 font-medium border-2">% प्रति माह</span>
+                </div>
 
               {errors.roi && <Message className='w-[258px]' severity="error" text="Interest Rate is required" />}
               </>
