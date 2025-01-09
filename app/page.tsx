@@ -3,11 +3,13 @@ import { formateDate } from '@/lib/format-date';
 import { InterestTable } from '@/lib/InterestTable';
 import { IntervalToDuration } from '@/lib/interval-duration';
 import { N2WHindi } from '@/lib/N2Whindi';
+import { useSearchParams } from 'next/navigation';
 import { Calendar } from 'primereact/calendar';
 import { InputNumber } from 'primereact/inputnumber';
 import { Message } from 'primereact/message';
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+
 type FormData = {
   currency: number,
   duration: JSON,
@@ -16,6 +18,12 @@ type FormData = {
   roi: number,
 }
 export default function ButtonBarDemo() {
+    const searchParams = useSearchParams()
+    const searchRoi = searchParams.get('roi')
+    const searchto= searchParams.get('to');
+    const searchfrom= searchParams.get('from');
+    const searchamount= searchParams.get('amount');
+    console.log(searchRoi, searchfrom, searchto, searchamount)
     const [table, setTable] = useState<boolean>(false)
     const [duration, setDuration] = useState({});
     const [words, setwords] = useState('');

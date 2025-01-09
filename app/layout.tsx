@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Lato } from 'next/font/google';
+import 'primeicons/primeicons.css';
 import { PrimeReactProvider } from "primereact/api";
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import "./globals.css";
