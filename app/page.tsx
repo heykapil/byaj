@@ -78,10 +78,10 @@ export default function ButtonBarDemo() {
           <label htmlFor="कब से" className='font-medium text-medium text-blue-700'>{watchAll.fromdate ? <p>{formateDate(watchAll.fromdate)} <span className='text-black'> तारीख़ से</span></p> : ''}</label>
         </div>
         <div className='card flex justify-content-center flex-col w-[258px] space-y-1'>
-         <Controller name="todate"         rules={{ required: true }}
+         <Controller name="todate"  defaultValue={new Date(Date.now())}        rules={{ required: true }}
  control={control} render={({ field }) => (
         <>
-        <Calendar required id='todate' placeholder='कब तक(तारीख़)' value={field.value} inputId="कब तक" dateFormat='dd/mm/yy' locale='en' className='border-2 rounded-md font-medium border-gray-300 border-rounded-md' onChange={(e) => { setTable(false); field.onChange(e.value) }} showButtonBar />
+        <Calendar required id='todate' placeholder='कब तक(तारीख़)' value={field.value || new Date(Date.now())} inputId="कब तक" dateFormat='dd/mm/yy' locale='en' className='border-2 rounded-md font-medium border-gray-300 border-rounded-md' onChange={(e) => { setTable(false); field.onChange(e.value) }} showButtonBar />
           {errors.todate && <Message className='w-[258px]' severity="error" text="To date is required" />}</>
           )} />
           <label htmlFor="कब तक" className='font-medium text-medium text-blue-700'>{watchAll.todate ? <p>{formateDate(watchAll.todate)}<span className='text-black'> तारीख़ तक</span></p> : ''}</label>
@@ -94,7 +94,7 @@ export default function ButtonBarDemo() {
           </p>
         </div>
         <div className='card flex justify-content-center flex-col w-fit max-w-[258px] space-y-1'>
-            <Controller name="roi"         rules={{ required: true }}
+            <Controller name="roi" defaultValue={2}    rules={{ required: true }}
                 control={control} render={({ field }) => (
               <>
                 <div className="p-inputgroup flex-1">
@@ -109,7 +109,8 @@ export default function ButtonBarDemo() {
                   // prefix={`ब्याज दर: `}
                   min={0}
                   max={100}
-                  value={field.value}
+                  defaultValue={2}
+                  value={field.value || 2}
                   onChange={(e) => { setTable(false); field.onChange(e.value) }}
               />
               <span className="p-inputgroup-addon h-10 bg-gray-50 text-black border-gray-300 border-l-0 font-medium border-2">% प्रति माह</span>
